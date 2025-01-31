@@ -561,6 +561,7 @@ margin-top: 0;
     background-color: #E65858;
     border: 3px solid #C12B2B;
     cursor: pointer;
+    z-index: 3;
 }
 
 .btn3-choice-oge p {
