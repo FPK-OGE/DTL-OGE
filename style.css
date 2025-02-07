@@ -374,7 +374,7 @@ margin-top: 0;
 
 .cloud{
     position: absolute;
-    left: -206.5px;
+    left: -199.5px;
     top: -200px;
     z-index: 2 !important;
 }
@@ -472,6 +472,48 @@ margin-top: 0;
     margin-bottom: 2px;
 }
 
+.animationsredCloud{
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.cloudYellow{
+    position: absolute;
+    left: -198.5px;
+    top: -200px;
+    z-index: 2;
+}
+
+.lightning1{
+    position: absolute;
+    left: -150px;
+    top: -80px;
+    z-index: 1;
+    animation: light1 3s infinite
+}
+
+@keyframes light1{
+    0% {opacity: 0;}
+    20% {opacity: 0;}
+    21% {opacity: 1; }
+    23% {opacity: 0;}
+    70% {opacity: 0;}
+    71% {opacity: 1; transform: scaleX(-2);}
+    73% {opacity: 0;}
+    98% {opacity: 0;}
+    99% {opacity: 1;}
+    100% {opacity: 0;}
+
+}
+
+.lightning2{
+    position: absolute;
+    left: 150px;
+    top: -100px;
+    z-index: 1;
+    animation: light1 4s infinite
+}
+
 .animationSred{
     z-index: 3;
     transform: scale(1);
@@ -553,6 +595,32 @@ margin-top: 0;
     z-index: 3;
 }
 
+.animationHard{
+    position: absolute;
+    left: -198.5px;
+    top: -200px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.black-background{
+    position: absolute;
+    z-index: 2;
+}
+
+.hard-fair{
+    z-index: 4;
+    position: absolute;
+    top: 322px;
+}
+
+.light-hard{
+    z-index: 4;
+    position: absolute;
+    left: -50px;
+    
+}
+
 .btn3-choice-oge{
     padding: 10px 10px;
     font-size: 26px;
@@ -563,6 +631,26 @@ margin-top: 0;
     cursor: pointer;
     z-index: 3;
 }
+
+.red-frame{
+    position: absolute;
+    width: 121px;
+    left: 257.8px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.text-frame-red{
+    z-index: 0;
+    position: absolute;
+    left: 280px;
+    top: 180px;
+    font-size: 18px;
+    opacity: 0;
+    pointer-events: none;
+    width: 300px;
+}
+
 
 .btn3-choice-oge p {
     color: #A51F1F;

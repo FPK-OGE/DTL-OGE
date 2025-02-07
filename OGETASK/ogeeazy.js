@@ -255,12 +255,15 @@ btn1ChoiceOge.addEventListener("mouseleave", function(){
   const YellowFrame = document.querySelector('.yellow-frame')
   const backgroundframe2 = document.querySelector('.background-frame2')
   const animationSred = document.querySelector('.animationSred')
+  const animationsredCloud = document.querySelector('.animationsredCloud')
 
 
 
   btn2ChoiceOge.addEventListener("mouseenter", function(){
     halo.classList.remove('halo-off')
     YellowFrame.classList.remove('yellow-frame-off')
+    animationsredCloud.classList.remove('animationsredCloud')
+    animationsredCloud.style.transition = '.4s'
 
     animationSred.style.transition = "0.4s";
     animationSred.style.transform = "scale(2)";
@@ -273,6 +276,7 @@ btn1ChoiceOge.addEventListener("mouseleave", function(){
     btn2ChoiceOge.addEventListener("mouseleave", function(){
         halo.classList.add('halo-off')
         YellowFrame.classList.add('yellow-frame-off')
+        animationsredCloud.classList.add('animationsredCloud')
 
         animationSred.style.transition = "0.4s";
         animationSred.style.transform = "scale(1)";
@@ -603,6 +607,52 @@ btn3ChoiceOge.addEventListener('click', function(){
 
 
 });
+
+const animationHard = document.querySelector('.animationHard')
+const redFrame = document.querySelector('.red-frame')
+const textFrameRed = document.querySelector('.text-frame-red')
+
+btn3ChoiceOge.addEventListener("mouseenter", function(){
+    animationHard.style.opacity = '1';
+    animationHard.style.transition = '.4s';
+    btn1ChoiceOge.style.filter = 'blur(2px)';
+    btn2ChoiceOge.style.filter = 'blur(2px)';
+    btn3ChoiceOge.style.transform = 'scale(2)';
+    btn3ChoiceOge.style.transition = '.4s';
+    btn3ChoiceOge.style.zIndex = '5';
+
+    redFrame.style.transform = 'scale(2)';
+    redFrame.style.transition = '.4s';
+    redFrame.style.top = '140px';
+    textFrameRed.style.fontSize = '29px'
+    redFrame.style.zIndex = '4'
+    textFrameRed.style.zIndex = '4'
+    redFrame.style.opacity = '1'
+    textFrameRed.style.opacity = '1'
+    });
+    
+    btn3ChoiceOge.addEventListener("mouseleave", function(){
+        animationHard.style.opacity = '0';
+        btn1ChoiceOge.style.filter = 'blur(0px)';
+        btn2ChoiceOge.style.filter = 'blur(0px)';
+        btn3ChoiceOge.style.transform = 'scale(1)';
+        btn3ChoiceOge.style.zIndex = '3';
+        
+        redFrame.style.transform = 'scale(1)';
+        textFrameRed.style.transform = 'scale(1)';
+
+        redFrame.style.transform = '';
+        redFrame.style.transition = '.4s';
+        redFrame.style.top = '140px';
+        textFrameRed.style.fontSize = ''
+
+        redFrame.style.opacity = '0'
+        textFrameRed.style.opacity = '0'
+
+      });
+
+
+
 
 btn1ChoiceEge.addEventListener('click', function(){
 
