@@ -32,6 +32,27 @@ let clock = () => {
   const BtnNight = document.querySelector('#btn-night-js')
   const circle = document.querySelector('#circle-js')
   const background = document.querySelector('#background-js')
+  const FrameTextInvert = document.querySelector('.frame-text-eazy')
+  const FrameTextInvert2 = document.querySelector('.frame-text-eazy2')
+  const FrameTextInvert3 = document.querySelector('.frame-text-eazy3')
+  const FrameTextInvert4 = document.querySelector('.frame-text-eazy4')
+
+  const NavBtnInvert1 = document.querySelector('.nav-btn-invert')
+  const NavBtnInvert2 = document.querySelector('.nav-btn-invert2')
+  const NavBtnInvert3 = document.querySelector('.nav-btn-invert3')
+  const NavBtnInvert4 = document.querySelector('.nav-btn-invert4')
+  const NavBtnInvert5 = document.querySelector('.nav-btn-invert5')
+
+  NavBtnInvert1.classList.remove('nav-btn-invert')
+  NavBtnInvert2.classList.remove('nav-btn-invert2')
+  NavBtnInvert3.classList.remove('nav-btn-invert3')
+  NavBtnInvert4.classList.remove('nav-btn-invert4')
+  NavBtnInvert5.classList.remove('nav-btn-invert5')
+
+  FrameTextInvert.classList.remove('frame-text-eazy')
+  FrameTextInvert2.classList.remove('frame-text-eazy2')
+  FrameTextInvert3.classList.remove('frame-text-eazy3')
+  FrameTextInvert4.classList.remove('frame-text-eazy4')
 
   circle.classList.remove('circle-nights')
   background.classList.remove('background-night')
@@ -58,6 +79,18 @@ let clock = () => {
   function night() {
     let fpkblack = document.querySelectorAll('.FPK');
     let answerInput = document.querySelectorAll('#answerInput');
+
+    FrameTextInvert.classList.toggle('frame-text-eazy')
+    FrameTextInvert2.classList.toggle('frame-text-eazy2')
+    FrameTextInvert3.classList.toggle('frame-text-eazy3')
+    FrameTextInvert4.classList.toggle('frame-text-eazy4')
+
+    NavBtnInvert1.classList.toggle('nav-btn-invert')
+    NavBtnInvert2.classList.toggle('nav-btn-invert2')
+    NavBtnInvert3.classList.toggle('nav-btn-invert3')
+    NavBtnInvert4.classList.toggle('nav-btn-invert4')
+    NavBtnInvert5.classList.toggle('nav-btn-invert5')
+
 
     // Получаем все элементы с классом 'oge'
     let elements = document.querySelectorAll('.text-img4-oge');

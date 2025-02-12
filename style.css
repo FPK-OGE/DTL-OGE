@@ -40,36 +40,32 @@ body{
 }
 
 .btn-night{
-    background-color: rgb(194, 194, 194);
-    border: white 2px solid;
-    border-radius: 42px;
-    width: 100px;
-    height: 50px;
-    cursor: pointer;
-    transition: 0.2s;
+    border: none; /* Убираем рамку */
+  background: transparent; /* Делаем фон прозрачным */
+  cursor: pointer;
+  animation: night 3s infinite;
 }
 
-.btn-night:hover{
-    background-color: rgb(177, 177, 177);
-    transition: 0.2s;
+@keyframes night {
+    
 }
 
 .circle-day{
-    height: 40px;
-    width: 40px;
-    border-radius: 50px;
-    background-color: rgb(242, 247, 0);
-    margin-left: -2px;
-    transition: 0.5s;
+    margin-top: -500px;
+    transition: .3s;
+}
+
+.circle-day:hover{
+    margin-top: -480px;
 }
 
 .circle-nights{
-    height: 40px;
-    width: 40px;
-    border-radius: 50px;
-    background-color: rgb(53, 54, 0);
-    margin-left: 45px;
-    transition: 0.5s;
+    margin-top: -300px;
+    transition: .3s;
+}
+
+.circle-nights:hover{
+    margin-top: -280px;
 }
 
 p{
@@ -357,7 +353,7 @@ margin-top: 0;
     margin-top: 30px;
 }
 
-.button-eazy-oge {
+.button-eazy-oge, .button-eazy-oge-2 {
     z-index: 3;
     transform: scale(1);
     transition: 0.4s;
@@ -368,11 +364,26 @@ margin-top: 0;
     opacity: 0;
 }
 
+.animation-eazy-2{
+    opacity: 0;
+}
+
 .btn-animation-eazy-oge{
     display: grid;
 }
 
+.btn-animation-eazy-oge-2{
+    display: grid;
+}
+
 .cloud{
+    position: absolute;
+    left: -199.5px;
+    top: -200px;
+    z-index: 2 !important;
+}
+
+.cloud-2{
     position: absolute;
     left: -199.5px;
     top: -200px;
@@ -385,24 +396,31 @@ margin-top: 0;
     z-index: 1 !important;
 }
 
-.rays1{
+.all-rays-2{
+    position: absolute;
+    top: -200px;
+    z-index: 1 !important;
+}
+
+
+.rays1, .rays1-2{
     position: absolute;
     left: -224px;
 }
-.rays2{
+.rays2, .rays2-2{
     position: absolute;
     left: 164px;
 }
-.rays3{
+.rays3, .rays3-2{
     position: absolute;
     right: -420px;
 }
-.rays4{
+.rays4, .rays4-2{
     position: absolute;
     left: -120px;
 }
 
-.eazyAnimationOge{
+.eazyAnimationOge, .eazyAnimationOge-2{
     width: 94px;
     height: 18px;
     position: absolute;
@@ -410,10 +428,12 @@ margin-top: 0;
     opacity: 1;
     transition: 0.3s;
     pointer-events: none;
+    z-index: 4 !important;
     
 }
 
-.eazyAnimationOge-off{
+
+.eazyAnimationOge-off, .eazyAnimationOge-off-2{
     bottom: 100px;
     opacity: 0;
     transition: 0.3s;
@@ -434,7 +454,7 @@ margin-top: 0;
     color: #64A936;
 }
 
-.green-frame{
+.green-frame, .green-frame-2{
     position: absolute;
     width: 97.5px;
     height: 140px;
@@ -444,14 +464,14 @@ margin-top: 0;
     transition: 0.3s;
 }
 
-.green-frame-off{
+.green-frame-off, .green-frame-off-2{
     bottom: 5px;
     transition: 0.3s;
     opacity: 0;
     z-index: 3;
 }
 
-.background-frame{
+.background-frame, .background-frame-2{
 
     position: absolute;
     background-color: white;
@@ -467,12 +487,12 @@ margin-top: 0;
 
 }
 
-.text-background-frame{
+.text-background-frame, .text-background-frame-2{
     margin-left: 10px;
     margin-bottom: 2px;
 }
 
-.animationsredCloud{
+.animationsredCloud, .animationsredCloud-2{
     opacity: 0;
     transition: 0.4s;
 }
@@ -484,7 +504,14 @@ margin-top: 0;
     z-index: 2;
 }
 
-.lightning1{
+.cloudYellow-2{
+    position: absolute;
+    left: -198.5px;
+    top: -200px;
+    z-index: 2;
+}
+
+.lightning1, .lightning1-2{
     position: absolute;
     left: -150px;
     top: -80px;
@@ -506,7 +533,7 @@ margin-top: 0;
 
 }
 
-.lightning2{
+.lightning2, .lightning2-2{
     position: absolute;
     left: 150px;
     top: -100px;
@@ -514,13 +541,13 @@ margin-top: 0;
     animation: light1 4s infinite
 }
 
-.animationSred{
+.animationSred, .animationSred-2{
     z-index: 3;
     transform: scale(1);
     transition: 0.4s;
 }
 
-.halo{
+.halo, .halo-2{
     position: absolute;
     height: 30px;
     width: 120px;
@@ -529,9 +556,10 @@ margin-top: 0;
     opacity: 1;
     transition: 0.3s;
     pointer-events: none;
+    z-index: 4 !important;
 }
 
-.halo-off{
+.halo-off, .halo-off-2{
     bottom: 100px;
     opacity: 0;
     transition: 0.3s;
@@ -564,17 +592,59 @@ margin-top: 0;
     opacity: 0;
     transition: 0.1s;
     left: 12px;
-    top: 57px;
+    top: 63px;
+    pointer-events: none;
+}
+
+.background-frame2-2{
+    position: absolute;
+    background-color: white;
+    width: 110px;
+    height: 64px;
+    font-size: 8.5px;
+    top: 61px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    opacity: 0;
+    transition: 0.1s;
+    left: 12px; 
     pointer-events: none;
 }
 
 .text-background-frame2{
     margin-left: 20px;
-    margin-bottom: 2px;
+    margin-top: -6px;
     color: black;
+    font-size: 7.5px;
+}
+
+.frame-text-eazy, .frame-text-eazy2, .frame-text-eazy3, .frame-text-eazy4{
+    filter: invert(91.5%);
+    color: black !important;
+}
+
+.text-background-frame2-2{
+    margin-left: 20px;
+    margin-top: -4px;
+    color: black;
+    font-size: 7.5px;
 }
 
 .yellow-frame{
+    position: absolute;
+    width: 115px;
+    height: 140px;
+    clip-path: inset(50% 0 0 0); /* Обрезаем снизу на 50% */
+    bottom: -60px;
+    pointer-events: none;
+    transition: 0.3s;
+    right: 147.5px;
+    bottom: 0px;
+    left: 10px;
+    top: -20px;
+}
+
+.yellow-frame-2{
     position: absolute;
     width: 115px;
     height: 140px;
@@ -595,7 +665,14 @@ margin-top: 0;
     z-index: 3;
 }
 
-.animationHard{
+.yellow-frame-off-2{
+    bottom: 30px;
+    transition: 0.3s;
+    opacity: 0;
+    z-index: 3;
+}
+
+.animationHard, .animationHard-2{
     position: absolute;
     left: -198.5px;
     top: -200px;
@@ -608,17 +685,135 @@ margin-top: 0;
     z-index: 2;
 }
 
+.black-background-2{
+    position: absolute;
+    z-index: 2;
+    margin-top: 2px;
+}
+
 .hard-fair{
     z-index: 4;
     position: absolute;
     top: 322px;
 }
 
-.light-hard{
+.hard-fair-2{
+    z-index: 4;
+    position: absolute;
+    top: 324px;
+}
+
+.light-hard, .light-hard-2{
     z-index: 4;
     position: absolute;
     left: -50px;
     
+}
+
+.horns{
+    position: absolute;
+    top: 50px;
+    left: 215px;
+    width: 210px;
+    z-index: 4;
+    opacity: 0;
+    pointer-events: none;
+    transition: .2s;
+  
+}
+
+.horns-active{
+    transition: .4s;
+    top: -20px;
+    z-index: 4;
+    opacity: 1;
+}
+
+.tail{
+    position: absolute;
+    width: 200px;
+    top: 160px;
+    left: 130px;
+    z-index: 1;
+    opacity: 0;
+    transition: .1s;
+}
+
+.tail-active{
+    top: 260px;
+    z-index: 4;
+    opacity: 1;
+    transition: .2s;
+}
+
+.fairs-active, .fairs-active2{
+    display: none;
+}
+
+
+.fair{
+    position: absolute;
+    z-index: 3;
+    top: 300px;
+    animation: floatingAsh 3s ease-in-out infinite;
+    opacity: 0;
+}
+
+@keyframes floatingAsh {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0;
+    }
+    25% {
+        transform: translateY(-120px) rotate(2deg);
+    }
+    50% {
+        transform: translateY(-140px) rotate(-2deg);
+        opacity: 0.7;
+    }
+    75% {
+        transform: translateY(-160px) rotate(3deg);
+    }
+    100% {
+        transform: translateY(-180px) rotate(-3deg);
+        opacity: 0;
+    }
+}
+
+.fair:nth-child(8) { animation-delay: 0s; }
+.fair:nth-child(3) { animation-delay: 0.5s; }
+.fair:nth-child(2) { animation-delay: 1s; }
+.fair:nth-child(5) { animation-delay: 1.5s; }
+.fair:nth-child(1) { animation-delay: 2s; }
+.fair:nth-child(4) { animation-delay: 2.5s; }
+.fair:nth-child(6) { animation-delay: 3s; }
+.fair:nth-child(7) { animation-delay: 3.5s; }
+
+
+
+.fair-1{
+    right: 500px;
+}
+.fair-2{
+    right: 400px;
+}
+.fair-3{
+    right: 300px;
+}
+.fair-4{
+    right: 200px;
+}
+.fair-5{
+    right: 100px;
+}
+.fair-6{
+    left: 300px;
+}
+.fair-7{
+    left: 400px;
+}
+.fair-8{
+    left: 500px;
 }
 
 .btn3-choice-oge{
@@ -632,25 +827,32 @@ margin-top: 0;
     z-index: 3;
 }
 
-.red-frame{
+.red-frame, .red-frame-2{
     position: absolute;
     width: 121px;
     left: 257.8px;
     opacity: 0;
     pointer-events: none;
+    
 }
 
-.text-frame-red{
+.text-frame-red, .text-frame-red-2{
     z-index: 0;
     position: absolute;
-    left: 280px;
-    top: 180px;
-    font-size: 18px;
+    left: 208px;
+    top: 140px;
+    font-size: 28px;
     opacity: 0;
     pointer-events: none;
     width: 300px;
+    transition: .1s;
 }
 
+.text-frame-red-active, .text-frame-red-active-2{
+    opacity: 1;
+    top: 200px;
+    transition: .4s;
+}
 
 .btn3-choice-oge p {
     color: #A51F1F;
@@ -670,7 +872,7 @@ margin-top: 0;
 .item-choice-ege{
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-bottom: 129px;
 }
 
 .btn1-choice-ege{
@@ -708,6 +910,7 @@ margin-top: 0;
     background-color: #E65858;
     border: 3px solid #C12B2B;
     cursor: pointer;
+    z-index: 3;
 }
 
 .btn3-choice-ege p {
@@ -776,6 +979,42 @@ margin-top: 0;
     margin-bottom: 20px;
 }
 
+.navigation{
+    position: absolute;
+    display: grid;
+    right: 490px;
+}
+
+.nav-btn-invert, .nav-btn-invert2, .nav-btn-invert3, .nav-btn-invert4, .nav-btn-invert5{
+    filter: invert(100%);
+}
+
+.nav-btn{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    
+}
+
+.nav-btn2{
+    margin-top: 16px;
+}
+
+.nav-btn3{
+    margin-top: 17px;
+}
+
+.nav-btn4{
+    margin-top: 16px;
+}
+
+.nav-btn5{
+    margin-top: 17px;
+}
+
 .task-number{
     font-size: 24px;
     margin-left: -100px;
@@ -831,3 +1070,5 @@ margin-top: 0;
     cursor: not-allowed;
     opacity: 0.3;
 }
+
+

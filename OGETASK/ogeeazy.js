@@ -1,6 +1,4 @@
 
-
-
 const startBtn1 = document.querySelector(".start-button");
 const resultContainerDIV = document.querySelector('#resultContainer-div')
 const imgsOge1 = document.querySelector('.imgs-oge1')
@@ -43,44 +41,39 @@ function startTest() {
 
 }
 
-  class Timer {
-    
-    constructor(button, timerText, duration, onComplete) {
+class Timer {
+    constructor(button, timerText, onComplete) {
         this.button = button;
         this.timerText = timerText;
-        this.duration = duration || 60000; // По умолчанию 1 минута
+        this.duration = parseInt(button.dataset.duration) || 60000; // Берем значение из data-duration
         this.isRunning = false;
         this.testCompleted = false;
         this.interval = null;
-        this.onComplete = onComplete; // Обработчик завершения таймера
+        this.onComplete = onComplete;
 
+        this.updateTimerDisplay(); // Обновляем отображение времени при создании
         this.button.addEventListener('click', () => this.toggle());
     }
 
     toggle() {
         if (!this.isRunning && !this.testCompleted) {
+            this.duration = parseInt(this.button.dataset.duration) || 60000; // Обновляем перед запуском
             this.start();
             this.button.textContent = 'Завершить тест';
 
             let taskImgs = document.querySelectorAll('.task-img');
-
             if (taskImgs.length > 0) {
                 taskImgs.forEach(img => {
-                    // Получаем текущий фильтр
                     let currentFilter = img.style.filter;
-                    
-                    // Заменяем любое значение blur на blur(0)
                     img.style.filter = currentFilter.replace('blur(4px)', 'blur(0)');
                 });
-                
             }
 
             let tasksOff = document.querySelector('.tasks-off');
             if (tasksOff) {
-                tasksOff.style.opacity = '1'; // Установка opacity
+                tasksOff.style.opacity = '1';
             }
 
-            // Убираем pointer-events: none у элемента с ID answerForm
             let answerForm = document.getElementById('answerForm');
             if (answerForm) {
                 answerForm.style.pointerEvents = 'auto';
@@ -88,56 +81,37 @@ function startTest() {
         } else if (this.isRunning) {
             this.stop();
             this.button.textContent = 'Начать тест';
-            this.button.style.opacity = '0.6'; // Добавление стиля непрозрачности
+            this.button.style.opacity = '0.6';
         }
-
-        
-
-
     }
 
     start() {
         const startTime = Date.now() + this.duration;
 
-        
-    
         const updateTimer = () => {
             const currentTime = Date.now();
             const timeLeft = startTime - currentTime;
-    
+
             if (timeLeft <= 0) {
                 clearInterval(this.interval);
-                this.timerText.textContent = "";
+                this.timerText.textContent = "00:00:000";
                 this.isRunning = false;
                 this.testCompleted = true;
-                this.button.disabled = true; // Блокируем кнопку
-                this.button.style.opacity = '0.6'; // Устанавливаем непрозрачность
-                this.button.style.pointerEvents = 'none'; // Отключаем взаимодействие
-    
-                // Включаем кнопки с классом btn-night
+                this.button.disabled = true;
+                this.button.style.opacity = '0.6';
+                this.button.style.pointerEvents = 'none';
+
                 this.enableBtnNight();
-    
-                // Вызываем функцию обратного вызова при завершении таймера
+
                 if (typeof this.onComplete === 'function') {
-                    this.onComplete(); // Выполняем действие при завершении таймера
+                    this.onComplete();
                 }
-
             } else {
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                const milliseconds = Math.floor(timeLeft % 1000);
-
-                const paddedMinutes = String(minutes).padStart(2, '0');
-                const paddedSeconds = String(seconds).padStart(2, '0');
-                const paddedMilliseconds = String(milliseconds).padStart(3, '0');
-
-                this.timerText.textContent = `${paddedMinutes}:${paddedSeconds}:${paddedMilliseconds}`;
+                this.displayTime(timeLeft);
             }
         };
 
-        // Отключаем кнопки с классом btn-night
         this.disableBtnNight();
-
         this.interval = setInterval(updateTimer, 10);
         this.isRunning = true;
     }
@@ -147,19 +121,33 @@ function startTest() {
         this.isRunning = false;
         this.testCompleted = true;
         this.button.disabled = true;
-        this.button.style.opacity = '0.6'; // Добавляем стиль непрозрачности
-        oge.classList.add('oge-off')
+        this.button.style.opacity = '0.6';
+        oge.classList.add('oge-off');
 
-        setTimeout(function() {
-            resultContainerDIV.classList.add('results-on')
-            resultContainerDIV.classList.remove('results-off')
-          }, 1200);
+        setTimeout(() => {
+            resultContainerDIV.classList.add('results-on');
+            resultContainerDIV.classList.remove('results-off');
+        }, 1200);
 
-        // Включаем кнопки с классом btn-night
         this.enableBtnNight();
     }
 
-    // Функция для отключения кнопок с классом btn-night
+    displayTime(time) {
+        const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((time % (1000 * 60)) / 1000);
+        const milliseconds = Math.floor(time % 1000);
+    
+        this.timerText.textContent = 
+            `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(3, '0')}`;
+    }
+    
+
+    // Обновляем текст таймера при изменении `data-duration`
+    updateTimerDisplay() {
+        const newDuration = parseInt(this.button.dataset.duration) || 60000;
+        this.displayTime(newDuration);
+    }
+
     disableBtnNight() {
         let buttons = document.querySelectorAll('.btn-night');
         buttons.forEach(btn => {
@@ -167,38 +155,32 @@ function startTest() {
         });
     }
 
-    // Функция для включения кнопок с классом btn-night
     enableBtnNight() {
         let buttons = document.querySelectorAll('.btn-night');
         buttons.forEach(btn => {
             btn.disabled = false;
         });
-
-        
     }
-    
 }
-const answer = document.getElementById('answerInput')
+
+// Создаём таймеры
 document.querySelectorAll('.start-button').forEach((button, index) => {
     let timerText = button.nextElementSibling;
-    let duration = parseInt(button.dataset.duration) || 60000; // Время из data-атрибута или по умолчанию 1 минута
-    
 
-    // Определяем разные действия для разных таймеров
     let onComplete = () => {
-        switch(index) {
-            case 0:
-                
-    if (answer) {
-        answer.classList.add('disabled');
-    }
-                break;
-            default:
-                console.error("Неизвестный индекс таймера", index);
+        if (index === 0) {
+            const answer = document.getElementById('answerInput');
+            if (answer) {
+                answer.classList.add('disabled');
+            }
         }
     };
 
-    new Timer(button, timerText, duration, onComplete);
+    let timer = new Timer(button, timerText, onComplete);
+
+    // Следим за изменением data-duration и обновляем таймер
+    const observer = new MutationObserver(() => timer.updateTimerDisplay());
+    observer.observe(button, { attributes: true, attributeFilter: ['data-duration'] });
 });
 
 
@@ -223,9 +205,22 @@ document.querySelectorAll('.start-button').forEach((button, index) => {
   const AnimationEazy = document.querySelector('.animation-eazy')
   const buttoneazyoge = document.querySelector('.button-eazy-oge')
   const backgroundframe = document.querySelector('.background-frame')
+  const horns = document.querySelector('.horns-active')
+  const tail = document.querySelector('.tail-active')
+
+  const navHref1 = document.querySelector('#nav-href1-js')
+  const navHref2 = document.querySelector('#nav-href2-js')
+  const navHref3 = document.querySelector('#nav-href3-js')
+  const navHref4 = document.querySelector('#nav-href4-js')
+  const navHref5 = document.querySelector('#nav-href5-js')
+
+
+
+  horns.classList.remove('horns-active')
 
 btn1ChoiceOge.addEventListener("mouseenter", function(){
 eazyAnimationOge.classList.remove('eazyAnimationOge-off')
+
 
 buttoneazyoge.style.transition = "0.4s";
 buttoneazyoge.style.transform = "scale(2)";
@@ -240,6 +235,7 @@ backgroundframe.style.opacity = '1';
 
 btn1ChoiceOge.addEventListener("mouseleave", function(){
   eazyAnimationOge.classList.add('eazyAnimationOge-off')
+
 
   buttoneazyoge.style.transition = "0.4s";
   buttoneazyoge.style.transform = "scale(1)";
@@ -270,6 +266,8 @@ btn1ChoiceOge.addEventListener("mouseleave", function(){
     animationSred.style.zIndex = "4";
 
     backgroundframe2.style.opacity = '1';
+
+    
     
     });
     
@@ -304,9 +302,15 @@ btn1ChoiceOge.addEventListener("mouseleave", function(){
       resultsCorrectAnswer4.textContent = '40'
       resultsCorrectAnswer5.textContent = '-1,3'
 
+    navHref1.href = "https://www.youtube.com/watch?v=XPXUGXTEDow";
+    navHref2.href = "https://vkvideo.ru/video-185411986_456239811?ref_domain=yastatic.net";
+    navHref3.href = "https://www.youtube.com/watch?v=rZCfaPRCbLA";
+    navHref4.href = "https://youtu.be/asmALUOREz8?si=KyLmhtdW5bhjzKAH";
+    navHref5.href = "https://rutube.ru/video/2eebaccca45fde794f3827bb121b5287/?&utm_source=embed&utm_medium=referral&utm_campaign=logo&utm_content=2eebaccca45fde794f3827bb121b5287&utm_term=yastatic.net%2F&referrer=appmetrica_tracking_id%3D1037600761300671389%26ym_tracking_id%3D11333591641848709155";
+
       
 
-
+      document.getElementById('timer-time').dataset.duration = "480000";
     }, 550);
       
   })
@@ -576,9 +580,15 @@ btn2ChoiceOge.addEventListener('click', function(){
       resultsCorrectAnswer3.textContent = '421'
       resultsCorrectAnswer4.textContent = '4'
       resultsCorrectAnswer5.textContent = '9'
-        
-        
 
+      navHref1.href = "https://youtube.com/shorts/945CwofcnkY?si=rjK5nba0r33pu0el"
+      navHref2.href = "https://youtu.be/zpnoFuEwkrU?si=heTP0pBHTZK9IKhm"
+      navHref3.href = "https://rutube.ru/video/0349e10da4025889144317a1a6730111/?&utm_source=embed&utm_medium=referral&utm_campaign=logo&utm_content=0349e10da4025889144317a1a6730111&utm_term=yastatic.net%2F&referrer=appmetrica_tracking_id%3D1037600761300671389%26ym_tracking_id%3D1603993878705176631"
+      navHref4.href = "https://youtube.com/shorts/QJK5CfcBdDI?si=GVL0I_-pJuGDQ0NT"
+      navHref5.href = "https://www.youtube.com/watch?v=72HiQIiq7gI"
+        
+        
+      document.getElementById('timer-time').dataset.duration = "720000";
     }, 550);
 
 });
@@ -600,9 +610,16 @@ btn3ChoiceOge.addEventListener('click', function(){
       resultsCorrectAnswer3.textContent = '6'
       resultsCorrectAnswer4.textContent = '420'
       resultsCorrectAnswer5.textContent = '36'
-        
-        
 
+
+      navHref1.href = "https://yandex.ru/video/preview/6002665231406258384"
+      navHref2.href = "https://youtu.be/n-_oooGuyB4?si=7L1T4GEA4Ue901Zu"
+      navHref3.href = "https://youtu.be/XbJXciRaa-o?si=GKifvZxAhr5M6IzA"
+      navHref4.href = "https://youtu.be/B4SOo1RzEO4?si=v1OQAZ0Dl2tN-4pQ"
+      navHref5.href = "https://www.youtube.com/watch?v=86X9WcvhWNc"
+        
+        
+      document.getElementById('timer-time').dataset.duration = "1200000";
     }, 550);
 
 
@@ -611,8 +628,20 @@ btn3ChoiceOge.addEventListener('click', function(){
 const animationHard = document.querySelector('.animationHard')
 const redFrame = document.querySelector('.red-frame')
 const textFrameRed = document.querySelector('.text-frame-red')
+const fairs = document.querySelector('.fairs-active')
+
+
+
+textFrameRed.classList.remove('text-frame-red-active')
+
+tail.classList.remove('tail-active')
 
 btn3ChoiceOge.addEventListener("mouseenter", function(){
+    horns.classList.add('horns-active')
+    tail.classList.add('tail-active')
+
+    fairs.classList.remove('fairs-active')
+    
     animationHard.style.opacity = '1';
     animationHard.style.transition = '.4s';
     btn1ChoiceOge.style.filter = 'blur(2px)';
@@ -624,14 +653,18 @@ btn3ChoiceOge.addEventListener("mouseenter", function(){
     redFrame.style.transform = 'scale(2)';
     redFrame.style.transition = '.4s';
     redFrame.style.top = '140px';
-    textFrameRed.style.fontSize = '29px'
     redFrame.style.zIndex = '4'
     textFrameRed.style.zIndex = '4'
     redFrame.style.opacity = '1'
-    textFrameRed.style.opacity = '1'
+    textFrameRed.classList.add('text-frame-red-active')
     });
     
     btn3ChoiceOge.addEventListener("mouseleave", function(){
+        horns.classList.remove('horns-active')
+        tail.classList.remove('tail-active')
+
+        fairs.classList.add('fairs-active')
+        
         animationHard.style.opacity = '0';
         btn1ChoiceOge.style.filter = 'blur(0px)';
         btn2ChoiceOge.style.filter = 'blur(0px)';
@@ -647,7 +680,7 @@ btn3ChoiceOge.addEventListener("mouseenter", function(){
         textFrameRed.style.fontSize = ''
 
         redFrame.style.opacity = '0'
-        textFrameRed.style.opacity = '0'
+        textFrameRed.classList.remove('text-frame-red-active')
 
       });
 
@@ -671,8 +704,14 @@ btn1ChoiceEge.addEventListener('click', function(){
       resultsCorrectAnswer4.textContent = '2431'
       resultsCorrectAnswer5.textContent = '4,2'
         
-        
+      navHref1.href = "https://youtu.be/0MOp6RvGCEI?si=uDyDcDVvTT88P7bz"
+      navHref2.href = "https://www.youtube.com/watch?v=k9l8qUdv1dw"
+      navHref3.href = "https://rutube.ru/video/1a4fe088fa451a21fbf79d1564519aa3/?&utm_source=embed&utm_medium=referral&utm_campaign=logo&utm_content=1a4fe088fa451a21fbf79d1564519aa3&utm_term=yastatic.net%2F&referrer=appmetrica_tracking_id%3D1037600761300671389%26ym_tracking_id%3D13965555771871778993"
+      navHref4.href = "https://youtu.be/uis-XMr2Byo?si=lqADmrcK_4IwNu3_"
+      navHref5.href = "https://youtube.com/shorts/h5FrqwOOVhU?si=Ua97SdVCz0C0ZdWY"
 
+
+      document.getElementById('timer-time').dataset.duration = "480000";
     }, 550);
 
 });
@@ -694,8 +733,14 @@ btn2ChoiceEge.addEventListener('click', function(){
       resultsCorrectAnswer3.textContent = '7'
       resultsCorrectAnswer4.textContent = '360'
       resultsCorrectAnswer5.textContent = '1160'
-        
 
+      navHref1.href = "https://youtube.com/shorts/2myMO3EBc2I?si=CQGqk0HGrlHuESan"
+      navHref2.href = "https://dzen.ru/shorts/66e43ee2f99213031febc690"
+      navHref3.href = "https://youtu.be/V4TRx1D25F4?si=J8X3USOMKlw5SlsV"
+      navHref4.href = "https://rutube.ru/video/213f9ef45e3f9b40e3e654d8868abb2c/?&utm_source=embed&utm_medium=referral&utm_campaign=logo&utm_content=213f9ef45e3f9b40e3e654d8868abb2c&utm_term=yastatic.net%2F&referrer=appmetrica_tracking_id%3D1037600761300671389%26ym_tracking_id%3D11753028199347047930"
+      navHref5.href = "https://youtu.be/WlTRAP6pR5o?si=Z3LgEhvoMUJ0b9Xq"
+        
+      document.getElementById('timer-time').dataset.duration = "720000";
     }, 550);
 
 });
@@ -717,13 +762,155 @@ btn3ChoiceEge.addEventListener('click', function(){
       resultsCorrectAnswer3.textContent = '2431'
       resultsCorrectAnswer4.textContent = '11133'
       resultsCorrectAnswer5.textContent = '15'
-        
 
-        
 
+      navHref1.href = "https://www.youtube.com/watch?v=tyb2iHc04ZE"
+      navHref2.href = "https://youtu.be/RmPGa51MSao?si=XI0MeV2-WrYI3bOX"
+      navHref3.href = "https://youtu.be/4QYLEkszFyE?si=RYfyVMVjosYgK9gv"
+      navHref4.href = "https://www.youtube.com/watch?v=RwdECW1ksGw"
+      navHref5.href = "https://www.youtube.com/watch?v=Ppvx1EBVm48"
+        
+        
+      document.getElementById('timer-time').dataset.duration = "1200000";
     }, 550);
 
 });
 
 
+const eazyAnimationOge2 = document.querySelector('.eazyAnimationOge-off-2')
+const buttoneazyoge2 = document.querySelector('.button-eazy-oge-2')
+const AnimationEazy2 = document.querySelector('.animation-eazy-2')
+const backgroundframe22 = document.querySelector('.background-frame-2')
+const greenFrame2 = document.querySelector('.green-frame-off-2')
 
+
+btn1ChoiceEge.addEventListener("mouseenter", function(){
+    eazyAnimationOge2.classList.remove('eazyAnimationOge-off-2')
+    
+    buttoneazyoge2.style.transition = "0.4s";
+    buttoneazyoge2.style.transform = "scale(2)";
+    buttoneazyoge2.style.zIndex = "4";
+    
+    AnimationEazy2.style.transition = "0.4s";
+    AnimationEazy2.style.opacity = '1';
+    
+    backgroundframe22.style.opacity = '1';
+
+    greenFrame2.classList.remove('green-frame-off-2')
+    
+    });
+    
+    btn1ChoiceEge.addEventListener("mouseleave", function(){
+      eazyAnimationOge2.classList.add('eazyAnimationOge-off-2')
+    
+      buttoneazyoge2.style.transition = "0.4s";
+      buttoneazyoge2.style.transform = "scale(1)";
+      buttoneazyoge2.style.zIndex = "3";
+    
+      AnimationEazy2.style.transition = "0.4s";
+      AnimationEazy2.style.opacity = '0';
+
+      backgroundframe22.style.opacity = '0';
+
+      greenFrame2.classList.add('green-frame-off-2')
+      });
+
+
+      const halo2 = document.querySelector('.halo-2')
+      const YellowFrame2 = document.querySelector('.yellow-frame-2')
+      const backgroundframe222 = document.querySelector('.background-frame2-2')
+      const animationSred2 = document.querySelector('.animationSred-2')
+      const animationsredCloud2 = document.querySelector('.animationsredCloud-2')
+
+
+      btn2ChoiceEge.addEventListener("mouseenter", function(){
+        halo2.classList.remove('halo-off-2')
+        YellowFrame2.classList.remove('yellow-frame-off-2')
+        animationsredCloud2.classList.remove('animationsredCloud-2')
+        animationsredCloud2.style.transition = '.4s'
+    
+        animationSred2.style.transition = "0.4s";
+        animationSred2.style.transform = "scale(2)";
+        animationSred2.style.zIndex = "4";
+    
+        backgroundframe222.style.opacity = '1';
+        
+        });
+
+
+        
+        btn2ChoiceEge.addEventListener("mouseleave", function(){
+            halo2.classList.add('halo-off-2')
+            YellowFrame2.classList.add('yellow-frame-off-2')
+            animationsredCloud2.classList.add('animationsredCloud-2')
+    
+            animationSred2.style.transition = "0.4s";
+            animationSred2.style.transform = "scale(1)";
+            animationSred2.style.zIndex = "3";
+    
+            backgroundframe222.style.opacity = '0';
+          });
+
+
+          const animationHard2 = document.querySelector('.animationHard-2')
+          const redFrame2 = document.querySelector('.red-frame-2')
+          const textFrameRed2 = document.querySelector('.text-frame-red-2')
+
+          textFrameRed2.classList.remove('text-frame-red-active-2')
+
+          const horns2 = document.querySelector('.horns-active')
+          const tail2 = document.querySelector('.tail-active')
+
+        horns2.classList.remove('horns-active')
+        tail2.classList.remove('tail-active')
+
+        const fairs2 = document.querySelector('.fairs-active2')
+
+        
+
+btn3ChoiceEge.addEventListener("mouseenter", function(){
+    animationHard2.style.opacity = '1';
+    animationHard2.style.transition = '.4s';
+    btn1ChoiceEge.style.filter = 'blur(2px)';
+    btn2ChoiceEge.style.filter = 'blur(2px)';
+    btn3ChoiceEge.style.transform = 'scale(2)';
+    btn3ChoiceEge.style.transition = '.4s';
+    btn3ChoiceEge.style.zIndex = '5';
+
+    redFrame2.style.transform = 'scale(2)';
+    redFrame2.style.transition = '.4s';
+    redFrame2.style.top = '140px';
+    redFrame2.style.zIndex = '4'
+    textFrameRed2.style.zIndex = '4'
+    redFrame2.style.opacity = '1'
+    textFrameRed2.classList.add('text-frame-red-active-2')
+
+    horns2.classList.add('horns-active')
+    tail2.classList.add('tail-active')
+
+    fairs2.classList.remove('fairs-active2')
+    });
+    
+    btn3ChoiceEge.addEventListener("mouseleave", function(){
+        animationHard2.style.opacity = '0';
+        btn1ChoiceEge.style.filter = 'blur(0px)';
+        btn2ChoiceEge.style.filter = 'blur(0px)';
+        btn3ChoiceEge.style.transform = 'scale(1)';
+        btn3ChoiceEge.style.zIndex = '3';
+        
+        redFrame2.style.transform = 'scale(1)';
+        textFrameRed2.style.transform = 'scale(1)';
+
+        redFrame2.style.transform = '';
+        redFrame2.style.transition = '.4s';
+        redFrame2.style.top = '140px';
+        textFrameRed2.style.fontSize = ''
+
+        redFrame2.style.opacity = '0'
+        textFrameRed2.classList.remove('text-frame-red-active-2')
+
+        horns2.classList.remove('horns-active')
+        tail2.classList.remove('tail-active')
+
+        fairs2.classList.add('fairs-active2')
+      });
