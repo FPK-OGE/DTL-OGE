@@ -297,6 +297,8 @@ btn1ChoiceOge.addEventListener("mouseleave", function(){
         choiceOge.classList.add('choice-oge-off'); // Выполняем действие немедленно
     }
 
+    btn3ChoiceOge.style.pointerEvents = 'none';
+    btn2ChoiceOge.style.pointerEvents = 'none';
     
 
     setTimeout(function() {
@@ -592,6 +594,9 @@ btn2ChoiceOge.addEventListener('click', function(){
     } else {
         choiceOge.classList.add('choice-oge-off') // Выполняем действие немедленно
     }
+
+    btn1ChoiceOge.style.pointerEvents = 'none';
+    btn3ChoiceOge.style.pointerEvents = 'none';
     
     
     
@@ -644,6 +649,9 @@ btn3ChoiceOge.addEventListener('click', function(){
     } else {
         choiceOge.classList.add('choice-oge-off') // Выполняем действие немедленно
     }
+
+    btn1ChoiceOge.style.pointerEvents = 'none';
+    btn2ChoiceOge.style.pointerEvents = 'none';
 
     setTimeout(function() {
       
@@ -708,6 +716,8 @@ btn3ChoiceOge.addEventListener("mouseenter", function(){
     textFrameRed.style.zIndex = '4'
     redFrame.style.opacity = '1'
     textFrameRed.classList.add('text-frame-red-active')
+
+    
     });
     
     btn3ChoiceOge.addEventListener("mouseleave", function(){
@@ -753,6 +763,9 @@ btn1ChoiceEge.addEventListener('click', function(){
     } else {
         choiceEge.classList.add('choice-ege-off')
     }
+
+    btn3ChoiceEge.style.pointerEvents = 'none';
+    btn2ChoiceEge.style.pointerEvents = 'none';
 
     setTimeout(function() {
       
@@ -801,6 +814,9 @@ btn2ChoiceEge.addEventListener('click', function(){
     imgsEge2.classList.remove('imgs-ege2')
     correctAnswers = correctAnswersSet5;
 
+    btn1ChoiceEge.style.pointerEvents = 'none';
+    btn3ChoiceEge.style.pointerEvents = 'none';
+
     setTimeout(function() {
       
         
@@ -844,6 +860,9 @@ btn3ChoiceEge.addEventListener('click', function(){
 
     imgsEge3.classList.remove('imgs-ege3')
     correctAnswers = correctAnswersSet6;
+
+    btn1ChoiceEge.style.pointerEvents = 'none';
+    btn2ChoiceEge.style.pointerEvents = 'none';
 
     setTimeout(function() {
       

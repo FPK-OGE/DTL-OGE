@@ -167,7 +167,7 @@
 
 @media (max-width:400px){
     .fpk-center{
-        transform: scale(0.8);
+        transform: scale(0.8 );
         z-index: 1000;
         position: relative;
     }
