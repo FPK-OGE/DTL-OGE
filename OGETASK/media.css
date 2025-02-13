@@ -1,4 +1,9 @@
 @media (max-width:480px){
+    .preview-main{
+        transform: scale(0.9);
+        min-width: 400px;
+    }
+
     .fpk-center{
         transform: scale(0.9);
         z-index: 1000;
@@ -167,10 +172,6 @@
         position: relative;
     }
 
-    .preview-main{
-        transform: scale(0.9);
-        min-width: 400px;
-    }
 
     
 }
