@@ -166,4 +166,11 @@
         z-index: 1000;
         position: relative;
     }
+
+    .preview-main{
+        transform: scale(0.9);
+        min-width: 400px;
+    }
+
+    
 }
