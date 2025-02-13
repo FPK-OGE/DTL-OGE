@@ -16,6 +16,10 @@ body{
     color: black;
 }
 
+button, a, img {
+    outline: none;
+}
+
 .footer-main{
     margin-top: auto;
 }
