@@ -1,0 +1,155 @@
+@media (max-width:480px){
+    .preview-text{
+        overflow: visible;
+        font-size: 14px;
+    }
+
+    .preview-logo{
+        animation: logo 8s forwards;  
+    }
+    
+    @keyframes logo {
+        0% {opacity: 0; margin-right: 0px;}
+        20% {opacity: 1; margin-right: 0px;}
+        60% {opacity: 1; margin-right: 300px;}
+        90% {opacity: 1; margin-right: 300px;}
+        100% {opacity: 1; margin-right: 300px;}
+    }
+
+    .button-night{
+        right: -20px;
+    }
+
+    .tasks{
+        position: absolute;
+        margin-left: 150px;
+        display: grid;
+        margin-top: 50px;
+    }
+
+    .task-img{
+        max-width: 470px;
+    }
+
+    .task-img-px2{
+        left: -180px;
+    }
+
+    .task-img-px5{
+        left: -190px;
+    }
+
+    .task-img-px4-2{
+        left: -190px;
+    }
+
+    .task-img-px5-2{
+        left: -180px;
+        height: 50px;
+    }
+
+    .task-img-px2-3{
+        left: -180px;
+        height: 40px;
+    }
+
+    .task-img-px3-3{
+        left: -180px;
+        height: 35px;
+    }
+
+    .task-img-px4-3{
+        left: -180px;
+        height: 40px;
+    }
+
+    .task-img-px5-3{
+        left: -185px;
+        height: 30px;
+    }
+
+    .task-img-px2-4{
+        left: -185px;
+        height: 40px;
+    }
+
+    .task-img-px3-4{
+        left: -185px;
+        height: 35px;
+    }
+
+    .task-img-px4-4{
+        left: -185px;
+        height: 180px;
+    }
+
+    .task-img-px1-5{
+        left: -185px;
+        height: 270px;
+    }
+
+    .task-img-px2-5{
+        left: -185px;
+        height: 270px;
+    }
+
+    .task-img-px3-5{
+        left: -180px;
+        height: 270px;
+    }
+
+    .task-img-px4-5{
+        left: -185px;
+        height: 270px;
+    }
+
+    .task-img-px5-5{
+        left: -185px;
+        height: 270px;
+    }
+
+    .task-img-px1-6{
+        left: -185px;
+        height: 50px;
+    }
+
+    .task-img-px2-6{
+        left: -180px;
+        height: 30px;
+    }
+
+    .task-img-px3-6{
+        left: -180px;
+        height: 230px;
+        top: -120px;
+    }
+
+    .task-img-px4-6{
+        left: -180px;
+        height: 35px;
+    }
+
+    .task-img-px5-6{
+        left: -180px;
+        height: 35px;
+    }
+
+
+    #answerForm{
+        left: -150px;
+    }
+
+    .fading-shadow{
+        width: 405px;
+    }
+
+    .timer-container{
+        right: 125px;
+        bottom: 100px;
+    }
+
+    .results-on{
+        transform: scale(0.9);
+        margin-left: -15px;
+    }
+}

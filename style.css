@@ -188,7 +188,7 @@ margin-top: 0;
     margin-top: auto;
 }
 
-.start-on{
+    .start-on{
     background-color: white;
     border-right: 2px solid rgb(37, 37, 185);
     border-top: 20px solid rgb(37, 37, 185);
@@ -205,6 +205,7 @@ margin-top: 0;
     display: grid;
     justify-content: center;
     z-index: 5;
+    text-align: center;
 }
 
 .start-off{
@@ -216,9 +217,20 @@ margin-top: 0;
     margin-left: 15px;
 }
 
+.btn-feedback{
+    display: flex;
+}
+
 .text-feedback{
     padding: 10px 10px;
     color: black !important;
+}
+
+.text-seefeedback{
+    padding: 10px 10px;
+    color: black !important;
+    margin-left: 5px;
+    margin-right: 15px;
 }
 
 .logo-main{

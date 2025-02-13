@@ -287,13 +287,29 @@ btn1ChoiceOge.addEventListener("mouseleave", function(){
 
   btn1ChoiceOge.addEventListener('click', function(){
 
-    choiceOge.classList.add('choice-oge-off')
+    const width = window.innerWidth; // Получаем ширину окна браузера
+
+    if (width <= 480) { // Если ширина экрана меньше или равна 480 пикселей
+        setTimeout(() => { // Задерживаем выполнение функции на 2 секунды
+            choiceOge.classList.add('choice-oge-off');
+        }, 1200); // Задержка в миллисекундах (2000 мс = 2 секунды)
+    } else {
+        choiceOge.classList.add('choice-oge-off'); // Выполняем действие немедленно
+    }
 
     
 
     setTimeout(function() {
-      btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+
+      if (width <= 480) { // Если ширина экрана меньше или равна 480 пикселей
+        setTimeout(() => { // Задерживаем выполнение функции на 2 секунды
+            btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
       imgsOge1.classList.remove('imgs-oge1')
+        }, 1200); // Задержка в миллисекундах (2000 мс = 2 секунды)
+    } else {
+        btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+      imgsOge1.classList.remove('imgs-oge1') // Выполняем действие немедленно
+    }
 
 
       resultsCorrectAnswer1.textContent = '1,5'
@@ -562,10 +578,20 @@ function actionFive() {
 
 btn2ChoiceOge.addEventListener('click', function(){
 
-    choiceOge.classList.add('choice-oge-off')
+    
     imgsOge2.classList.remove('imgs-oge2')
     answerForm.style.top = "200px";
     correctAnswers = correctAnswersSet2;
+
+    const width = window.innerWidth; // Получаем ширину окна браузера
+
+    if (width <= 480) { // Если ширина экрана меньше или равна 480 пикселей
+        setTimeout(() => { // Задерживаем выполнение функции на 2 секунды
+            choiceOge.classList.add('choice-oge-off')
+        }, 1200); // Задержка в миллисекундах (2000 мс = 2 секунды)
+    } else {
+        choiceOge.classList.add('choice-oge-off') // Выполняем действие немедленно
+    }
     
     
     
@@ -573,7 +599,15 @@ btn2ChoiceOge.addEventListener('click', function(){
     setTimeout(function() {
       
         
-        btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+        
+
+        if (width <= 480) { // Если ширина экрана меньше или равна 480 пикселей
+            setTimeout(() => { // Задерживаем выполнение функции на 2 секунды
+                btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+            }, 1200); // Задержка в миллисекундах (2000 мс = 2 секунды)
+        } else {
+            btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off') // Выполняем действие немедленно
+        }
 
       resultsCorrectAnswer1.textContent = '11'
       resultsCorrectAnswer2.textContent = '-16'
@@ -596,14 +630,31 @@ btn2ChoiceOge.addEventListener('click', function(){
 
 btn3ChoiceOge.addEventListener('click', function(){
 
-    choiceOge.classList.add('choice-oge-off')
+    
     imgsOge3.classList.remove('imgs-oge3')
     correctAnswers = correctAnswersSet3;
 
+
+    const width = window.innerWidth; // Получаем ширину окна браузера
+
+    if (width <= 480) { // Если ширина экрана меньше или равна 480 пикселей
+        setTimeout(() => { // Задерживаем выполнение функции на 2 секунды
+            choiceOge.classList.add('choice-oge-off')
+        }, 1200); // Задержка в миллисекундах (2000 мс = 2 секунды)
+    } else {
+        choiceOge.classList.add('choice-oge-off') // Выполняем действие немедленно
+    }
+
     setTimeout(function() {
       
+        if (width <= 480) { // Если ширина экрана меньше или равна 480 пикселей
+            setTimeout(() => { // Задерживаем выполнение функции на 2 секунды
+                btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+            }, 1200); // Задержка в миллисекундах (2000 мс = 2 секунды)
+        } else {
+            btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+        }
         
-        btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
 
       resultsCorrectAnswer1.textContent = '3'
       resultsCorrectAnswer2.textContent = '-8'
@@ -689,14 +740,32 @@ btn3ChoiceOge.addEventListener("mouseenter", function(){
 
 btn1ChoiceEge.addEventListener('click', function(){
 
-    choiceEge.classList.add('choice-ege-off')
+    
     imgsEge1.classList.remove('imgs-ege1')
     correctAnswers = correctAnswersSet4;
+
+    const width = window.innerWidth; // Получаем ширину окна браузера
+
+    if (width <= 480) { // Если ширина экрана меньше или равна 480 пикселей
+        setTimeout(() => { // Задерживаем выполнение функции на 2 секунды
+            choiceEge.classList.add('choice-ege-off')
+        }, 1200); // Задержка в миллисекундах (2000 мс = 2 секунды)
+    } else {
+        choiceEge.classList.add('choice-ege-off')
+    }
 
     setTimeout(function() {
       
         
-        btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+        
+
+        if (width <= 480) { // Если ширина экрана меньше или равна 480 пикселей
+            setTimeout(() => { // Задерживаем выполнение функции на 2 секунды
+                btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+            }, 1200); // Задержка в миллисекундах (2000 мс = 2 секунды)
+        } else {
+            btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+        }
 
       resultsCorrectAnswer1.textContent = '12'
       resultsCorrectAnswer2.textContent = '0,0625'
@@ -719,14 +788,29 @@ btn1ChoiceEge.addEventListener('click', function(){
 
 btn2ChoiceEge.addEventListener('click', function(){
 
-    choiceEge.classList.add('choice-ege-off')
+    const width = window.innerWidth; // Получаем ширину окна браузера
+
+    if (width <= 480) { // Если ширина экрана меньше или равна 480 пикселей
+        setTimeout(() => { // Задерживаем выполнение функции на 2 секунды
+            choiceEge.classList.add('choice-ege-off')
+        }, 1200); // Задержка в миллисекундах (2000 мс = 2 секунды)
+    } else {
+        choiceEge.classList.add('choice-ege-off')
+    }
+
     imgsEge2.classList.remove('imgs-ege2')
     correctAnswers = correctAnswersSet5;
 
     setTimeout(function() {
       
         
-        btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+        if (width <= 480) { // Если ширина экрана меньше или равна 480 пикселей
+            setTimeout(() => { // Задерживаем выполнение функции на 2 секунды
+                btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+            }, 1200); // Задержка в миллисекундах (2000 мс = 2 секунды)
+        } else {
+            btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+        }
 
       resultsCorrectAnswer1.textContent = '860'
       resultsCorrectAnswer2.textContent = '48'
@@ -748,14 +832,29 @@ btn2ChoiceEge.addEventListener('click', function(){
 
 btn3ChoiceEge.addEventListener('click', function(){
 
-    choiceEge.classList.add('choice-ege-off')
+    const width = window.innerWidth; // Получаем ширину окна браузера
+
+    if (width <= 480) { // Если ширина экрана меньше или равна 480 пикселей
+        setTimeout(() => { // Задерживаем выполнение функции на 2 секунды
+            choiceEge.classList.add('choice-ege-off')
+        }, 1200); // Задержка в миллисекундах (2000 мс = 2 секунды)
+    } else {
+        choiceEge.classList.add('choice-ege-off')
+    }
+
     imgsEge3.classList.remove('imgs-ege3')
     correctAnswers = correctAnswersSet6;
 
     setTimeout(function() {
       
         
-        btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+        if (width <= 480) { // Если ширина экрана меньше или равна 480 пикселей
+            setTimeout(() => { // Задерживаем выполнение функции на 2 секунды
+                btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+            }, 1200); // Задержка в миллисекундах (2000 мс = 2 секунды)
+        } else {
+            btn1ogeEazy.classList.remove('btn1-choice-oge-eazy-off')
+        }
 
       resultsCorrectAnswer1.textContent = '108'
       resultsCorrectAnswer2.textContent = '-5'
