@@ -1089,4 +1089,10 @@ margin-top: 0;
     opacity: 0.3;
 }
 
+.reload{
+    position: absolute;
+    left: 80px;
+    top: 450px;
+}
+
 
